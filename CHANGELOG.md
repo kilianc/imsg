@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Mention people from RPC `send.rich` and `send.multipart` parts with `mentions` ranges, so Messages notifies them; advertise support as the bridge's `selectors.sendMentions` and refuse mentions on helpers without it before dispatch.
+
 ## 0.20.0 - 2026-10-26
 
 **Highlights:** Send Shooting Star and the corrected Balloons, Love, and Celebration screen effects, and safely retry attachment or sticker sends refused before dispatch.
