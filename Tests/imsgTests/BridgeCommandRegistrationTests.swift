@@ -35,6 +35,14 @@ func injectedHelperReportsAuthoritativeMultipartCapability() throws {
 }
 
 @Test
+func injectedHelperReportsMentionCapability() throws {
+  let source = stripObjectiveCComments(try injectedHelperSource())
+  let statusBody = try #require(bridgeFunctionBody(named: "handleStatus", in: source))
+
+  #expect(statusBody.contains(#"@"sendMentions": @(chatSend)"#))
+}
+
+@Test
 func bridgeMessagingCommandsExposeChatRequirement() throws {
   // Each new bridge messaging command requires a `--chat` option (the chat
   // guid is the universal addressing key in v2). Ensure missing args bubble
