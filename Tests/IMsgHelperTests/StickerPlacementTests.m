@@ -75,11 +75,13 @@ int main(void) {
         // The handler refuses placement before it reads the file or probes IMCore.
         NSDictionary *response = sendSticker(nil, placement(@{}));
         check([response[@"success"] isEqual:@NO]
-                  && [response[@"error"] isEqualToString:@"placement requires selectedMessageGuid"],
+                  && [response[@"error"] isEqualToString:@"placement requires selectedMessageGuid"]
+                  && [response[@"delivery_disposition"] isEqualToString:@"not_started"],
               @"Placement without a target is refused");
         response = sendSticker(@"parent-guid", placement(@{@"scale": @9}));
         check([response[@"success"] isEqual:@NO]
-                  && [response[@"error"] containsString:@"placement scale"],
+                  && [response[@"error"] containsString:@"placement scale"]
+                  && [response[@"delivery_disposition"] isEqualToString:@"not_started"],
               @"Out-of-range placement is refused before dispatch");
 
         printf("Bridge sticker placement tests: %lu failure(s)\n", (unsigned long)failures);
