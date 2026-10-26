@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Report `send.sticker` and `send.attachment` refusals that happen before dispatch, such as a sticker target the bridge cannot find, as `-32603` with `disposition: not_started` instead of `-32001` delivery outcome unknown, so callers can retry or send another way without risking a duplicate.
+
 ## 0.19.1 - 2026-10-22
 
 **Highlights:** Keep the IMCore bridge injected across reboots with an opt-in login agent, report your own account as the sender of outgoing 1:1 messages, and stop the bridge debug log from growing without bound.
