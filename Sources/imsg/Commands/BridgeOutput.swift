@@ -22,10 +22,10 @@ enum ExpressiveSendEffect {
     "love": "Heart",
     "lasers": "Lasers",
     "fireworks": "Fireworks",
-    // Shooting Star; Apple's `CKSparklesEffect` is Celebration.
-    "sparkles": "ShootingStar",
     "shootingstar": "ShootingStar",
     "celebration": "Sparkles",
+    // Apple's own token for Celebration, kept for existing callers.
+    "sparkles": "Sparkles",
   ]
 
   static func expand(_ raw: String) -> String {

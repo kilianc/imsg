@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- Send Apple's identifiers for the `balloons`, `love`, and `celebration` screen effects, which previously sent identifiers Messages does not recognize and played nothing; `sparkles`, which played Celebration, now plays Shooting Star, also available as `shootingstar`.
+- Send Apple's identifiers for the `balloons`, `love`, and `celebration` screen effects, which previously sent identifiers Messages does not recognize and played nothing, and add `shootingstar` for Shooting Star.
 
 ## 0.19.1 - 2026-10-22
 

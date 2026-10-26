@@ -415,9 +415,9 @@ func expressiveSendEffectExpandsShortNames() {
     ("love", "com.apple.messages.effect.CKHeartEffect"),
     ("lasers", "com.apple.messages.effect.CKLasersEffect"),
     ("fireworks", "com.apple.messages.effect.CKFireworksEffect"),
-    ("sparkles", "com.apple.messages.effect.CKShootingStarEffect"),
     ("shootingstar", "com.apple.messages.effect.CKShootingStarEffect"),
     ("celebration", "com.apple.messages.effect.CKSparklesEffect"),
+    ("sparkles", "com.apple.messages.effect.CKSparklesEffect"),
   ]
   for (name, identifier) in screenEffects {
     #expect(ExpressiveSendEffect.expand(name) == identifier, "\(name)")
