@@ -11,17 +11,21 @@ enum ExpressiveSendEffect {
   static let bubbleNames: Set<String> = ["impact", "loud", "gentle", "invisibleink"]
 
   /// Screen effects play a full-screen animation. Map the short name to the
-  /// `CK<TitleCase>Effect` token used in the bundle id.
+  /// `CK<Token>Effect` token used in the bundle id. Apple's token is not always
+  /// the effect's name in Messages: Balloons is `HappyBirthday`, Love is
+  /// `Heart`, and Celebration is `Sparkles`.
   static let screenNames: [String: String] = [
+    "echo": "Echo",
+    "spotlight": "Spotlight",
+    "balloons": "HappyBirthday",
     "confetti": "Confetti",
+    "love": "Heart",
     "lasers": "Lasers",
     "fireworks": "Fireworks",
-    "balloons": "Balloons",
+    "shootingstar": "ShootingStar",
+    "celebration": "Sparkles",
+    // Apple's own token for Celebration, kept for existing callers.
     "sparkles": "Sparkles",
-    "spotlight": "Spotlight",
-    "echo": "Echo",
-    "love": "Love",
-    "celebration": "Celebration",
   ]
 
   static func expand(_ raw: String) -> String {

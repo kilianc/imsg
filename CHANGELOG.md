@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Send Apple's identifiers for the `balloons`, `love`, and `celebration` screen effects, which previously sent identifiers Messages does not recognize and played nothing, and add `shootingstar` for Shooting Star (#368, thanks @kilianc).
+
 ## 0.19.1 - 2026-10-22
 
 **Highlights:** Keep the IMCore bridge injected across reboots with an opt-in login agent, report your own account as the sender of outgoing 1:1 messages, and stop the bridge debug log from growing without bound.
