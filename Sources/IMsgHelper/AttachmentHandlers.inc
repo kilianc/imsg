@@ -183,11 +183,14 @@ static NSDictionary *handleSendSticker(NSInteger requestId, NSDictionary *params
     NSDictionary *placementGeometry = nil;
     if (rawPlacement) {
         if (!selectedMessageGuid.length) {
-            return errorResponse(requestId, @"placement requires selectedMessageGuid");
+            return errorResponseWithDisposition(requestId,
+                @"placement requires selectedMessageGuid", @"not_started");
         }
         NSString *placementErr = nil;
         placementGeometry = stickerPlacementGeometry(rawPlacement, &placementErr);
-        if (!placementGeometry) return errorResponse(requestId, placementErr);
+        if (!placementGeometry) {
+            return errorResponseWithDisposition(requestId, placementErr, @"not_started");
+        }
     }
     if (!stickerAttachmentMessageInitializerAvailable()) {
         return errorResponse(requestId,
