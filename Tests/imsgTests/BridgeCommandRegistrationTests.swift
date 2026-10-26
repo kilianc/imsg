@@ -405,16 +405,24 @@ func expressiveSendEffectExpandsShortNames() {
     ExpressiveSendEffect.expand("gentle")
       == "com.apple.MobileSMS.expressivesend.gentle")
 
-  // Screen effects map to messages.effect.CK<TitleCase>Effect.
-  #expect(
-    ExpressiveSendEffect.expand("confetti")
-      == "com.apple.messages.effect.CKConfettiEffect")
-  #expect(
-    ExpressiveSendEffect.expand("lasers")
-      == "com.apple.messages.effect.CKLasersEffect")
-  #expect(
-    ExpressiveSendEffect.expand("celebration")
-      == "com.apple.messages.effect.CKCelebrationEffect")
+  // Screen effects map to Apple's messages.effect.CK<Token>Effect ids, whose
+  // token is not always the effect's name in Messages.
+  let screenEffects = [
+    ("echo", "com.apple.messages.effect.CKEchoEffect"),
+    ("spotlight", "com.apple.messages.effect.CKSpotlightEffect"),
+    ("balloons", "com.apple.messages.effect.CKHappyBirthdayEffect"),
+    ("confetti", "com.apple.messages.effect.CKConfettiEffect"),
+    ("love", "com.apple.messages.effect.CKHeartEffect"),
+    ("lasers", "com.apple.messages.effect.CKLasersEffect"),
+    ("fireworks", "com.apple.messages.effect.CKFireworksEffect"),
+    ("sparkles", "com.apple.messages.effect.CKShootingStarEffect"),
+    ("shootingstar", "com.apple.messages.effect.CKShootingStarEffect"),
+    ("celebration", "com.apple.messages.effect.CKSparklesEffect"),
+  ]
+  for (name, identifier) in screenEffects {
+    #expect(ExpressiveSendEffect.expand(name) == identifier, "\(name)")
+  }
+  #expect(Set(screenEffects.map(\.0)) == Set(ExpressiveSendEffect.screenNames.keys))
 
   // Case-insensitive on the short form.
   #expect(

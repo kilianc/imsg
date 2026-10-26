@@ -33,6 +33,8 @@ imsg send-rich --chat 'iMessage;-;+15551234567' --text 'hello world' \
   --format '[{"start":0,"length":5,"styles":["bold"]}]'
 ```
 
+`--effect` also takes a short name. The bubble effects are `impact` (Slam), `loud`, `gentle`, and `invisibleink`. The screen effects are `echo`, `spotlight`, `balloons`, `confetti`, `love`, `lasers`, `fireworks`, `sparkles` or `shootingstar` (Shooting Star), and `celebration`. A value that starts with `com.apple.` is sent unchanged.
+
 Formatting requires macOS 15 or newer. Multipart messages accept a JSON array of text parts:
 
 ```bash
