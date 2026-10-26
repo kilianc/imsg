@@ -4,6 +4,7 @@
 
 - Mention people from RPC `send.rich` and `send.multipart` parts with `mentions` ranges, so Messages notifies them; advertise support as the bridge's `selectors.sendMentions` and refuse mentions on helpers without it before dispatch.
 - Place an attached sticker on its bubble with `x`, `y`, `scale`, and `rotation` on `send.sticker` and `--x`, `--y`, `--scale`, and `--rotation` on `imsg send-sticker`; capable helpers report `selectors.stickerPlacement`, and older helpers are refused before staging.
+- Report `send.sticker` and `send.attachment` refusals that happen before dispatch, such as a sticker target the bridge cannot find, as `-32603` with `disposition: not_started` instead of `-32001` delivery outcome unknown, so callers can retry or send another way without risking a duplicate.
 
 ## 0.19.1 - 2026-10-22
 
