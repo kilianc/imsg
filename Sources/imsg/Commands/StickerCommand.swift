@@ -43,7 +43,8 @@ enum StickerCommand {
     usageExamples: [
       "imsg send-sticker --chat 'iMessage;-;+15551234567' --file ~/Pictures/sticker.png",
       "imsg send-sticker --chat 'iMessage;-;+15551234567' --file ~/Pictures/sticker.png --attach-to MSG_GUID --target-part 0",
-      "imsg send-sticker --chat 'iMessage;-;+15551234567' --file ~/Pictures/sticker.png --attach-to MSG_GUID --x 0.9 --y 0.1 --scale 0.5 --rotation 15",
+      "imsg send-sticker --chat 'iMessage;-;+15551234567' --file ~/Pictures/sticker.png"
+        + " --attach-to MSG_GUID --x 0.9 --y 0.1 --scale 0.5 --rotation 15",
     ]
   ) { values, runtime in
     try await run(values: values, runtime: runtime)

@@ -250,11 +250,14 @@ func rpcSendStickerRejectsUnshippedAliasesAndMalformedRequests() async throws {
     #"{"jsonrpc":"2.0","id":"wrong-chat","method":"send.sticker","params":{"chat_id":1,"file":"x.png","attach_to":"other-guid"}}"#,
     #"{"jsonrpc":"2.0","id":"orphan-placement","method":"send.sticker","params":{"chat_id":1,"file":"x.png","x":0.5}}"#,
     #"{"jsonrpc":"2.0","id":"string-x","method":"send.sticker","params":{"chat_id":1,"file":"x.png","attach_to":"parent-guid","x":"0.5"}}"#,
-    #"{"jsonrpc":"2.0","id":"bool-scale","method":"send.sticker","params":{"chat_id":1,"file":"x.png","attach_to":"parent-guid","scale":true}}"#,
+    #"{"jsonrpc":"2.0","id":"bool-scale","method":"send.sticker","params":{"#
+      + #""chat_id":1,"file":"x.png","attach_to":"parent-guid","scale":true}}"#,
     #"{"jsonrpc":"2.0","id":"null-y","method":"send.sticker","params":{"chat_id":1,"file":"x.png","attach_to":"parent-guid","y":null}}"#,
     #"{"jsonrpc":"2.0","id":"far-y","method":"send.sticker","params":{"chat_id":1,"file":"x.png","attach_to":"parent-guid","y":-3.5}}"#,
-    #"{"jsonrpc":"2.0","id":"zero-scale","method":"send.sticker","params":{"chat_id":1,"file":"x.png","attach_to":"parent-guid","scale":0}}"#,
-    #"{"jsonrpc":"2.0","id":"wide-rotation","method":"send.sticker","params":{"chat_id":1,"file":"x.png","attach_to":"parent-guid","rotation":181}}"#,
+    #"{"jsonrpc":"2.0","id":"zero-scale","method":"send.sticker","params":{"#
+      + #""chat_id":1,"file":"x.png","attach_to":"parent-guid","scale":0}}"#,
+    #"{"jsonrpc":"2.0","id":"wide-rotation","method":"send.sticker","params":{"#
+      + #""chat_id":1,"file":"x.png","attach_to":"parent-guid","rotation":181}}"#,
   ]
   for request in requests {
     await server.handleLineForTesting(request)
