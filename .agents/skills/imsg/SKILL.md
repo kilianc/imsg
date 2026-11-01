@@ -69,6 +69,7 @@ imsg send --to "+15551234567" --text "message" --service auto
 imsg send --chat-id ID --text "message"        # prefer for groups: no address ambiguity
 imsg send --to "+15551234567" --file ~/Desktop/pic.jpg
 imsg name-photo share --chat GUID                  # shares YOUR Name & Photo; explicit request only
+imsg name-photo set --first-name NAME --photo PATH # replaces YOUR Name & Photo; explicit request only
 ```
 
 - `--service auto` prefers iMessage and falls back to SMS for text-only phone sends; `--no-sms-fallback` disables that.
