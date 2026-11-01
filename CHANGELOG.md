@@ -4,6 +4,7 @@
 
 - Mention people from RPC `send.rich` and `send.multipart` parts with `mentions` ranges, so Messages notifies them; advertise support as the bridge's `selectors.sendMentions` and refuse mentions on helpers without it before dispatch.
 - Place an attached sticker on its bubble with `x`, `y`, `scale`, and `rotation` on `send.sticker` and `--x`, `--y`, `--scale`, and `--rotation` on `imsg send-sticker`; capable helpers report `selectors.stickerPlacement`, and older helpers are refused before staging.
+- Set your Messages Name & Photo with `imsg name-photo set` and the `contacts.setNamePhoto` RPC method, optionally turning Name & Photo Sharing on or off; the bridge reports `stored: true` only after Messages holds the new record (thanks @kilianc).
 
 ## 0.20.0 - 2026-10-26
 

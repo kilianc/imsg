@@ -17,6 +17,8 @@ You almost certainly do not need any of this for normal use.
 - `imsg status` — read-only IMCore bridge status.
 - `imsg name-photo status|share --chat <guid>` — inspect the native offer
   eligibility or explicitly share your Messages Name & Photo with a chat.
+- `imsg name-photo set --first-name <name> [--photo <path>] [--sharing on|off]` —
+  replace your Messages Name & Photo.
 - `imsg send-rich --chat <guid> --reply-to <message-guid> --file <path>` —
   sends a threaded reply with an attachment through the bridge.
 - `imsg send-rich --chat <guid> --url <url>` — sends an Apple URL
@@ -211,6 +213,22 @@ no personal Name & Photo configured, instead of claiming that it sent one. The
 bridge returns `requested: true` only after invoking the version-gated private API; it
 does not claim receiver delivery. Agents must not invoke it without an explicit
 user request and a confirmed destination.
+
+```bash
+imsg name-photo set --first-name Ada --last-name Lovelace --photo ~/Pictures/ada.jpg --sharing on
+```
+
+`set` replaces the personal Name & Photo that `share` and Messages' own sharing
+send. imsg copies the photo under `~/Library/Messages/Attachments/imsg` first:
+Messages' sandboxed transfer agent uploads it from there and moves it into the
+nickname cache, and it cannot read a file inside the Messages container. The
+bridge asks imagent to store the record and waits up to ten seconds for imagent
+to echo it back. `stored: true` means Messages now holds the new record;
+`stored: false` means the echo did not arrive in time, and `name-photo status`
+reports `has_personal_nickname` once it does. `--sharing on|off` turns Name &
+Photo Sharing on or off through `IMMeCardSharingStateController`, which writes
+`MeCardSharingEnabled` in `com.apple.messages.nicknames`. To push the new record
+into a chat now, run `share`.
 
 ## Launching Messages with a custom dylib
 

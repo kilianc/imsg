@@ -677,6 +677,7 @@ Classic emoji ❤️, 👍, 👎, 😂, ‼️, and ❓ (including presentation-
 - `message.unsend`, `message.delete`, and `message.notifyAnyways` target `message_id` / `message_guid`.
 - `contacts.shouldShareContact` reads Apple Messages' advisory Name & Photo offer eligibility. The result includes `can_inspect_offer`, `can_share`, and tri-state `should_offer`.
 - `contacts.shareContactCard` explicitly requests Apple Messages Name & Photo sharing. Despite the compatibility name, this does not send a vCard. Success reports `requested: true`, not delivery.
+- `contacts.setNamePhoto` replaces your personal Name & Photo. Params: required `first_name`, optional `last_name`, optional `file` (an image imsg stages before dispatch), and optional boolean `sharing` to turn Name & Photo Sharing on or off. The result reports `stored`, true once Messages holds the new record, and `has_photo`. Requires `selectors.namePhotoSet`.
 
 #### Mentions
 
