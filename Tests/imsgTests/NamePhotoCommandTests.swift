@@ -438,6 +438,10 @@ func injectedHelperUsesGuardedNamePhotoSelectorFamilies() throws {
   #expect(setBody.contains("richLinkPathIsTrusted(photoPath)"))
   #expect(setBody.contains("@selector(initWithImageName:imageFilePath:sensitivityAnalysis:)"))
   #expect(setBody.contains("@selector(initWithFirstName:lastName:avatar:pronouns:)"))
+  // Receivers' BlastDoor rejects a record whose values Messages never writes.
+  #expect(setBody.contains(#"@"NickNameImage", photoPath, nil"#))
+  #expect(!setBody.contains("NSUUID"))
+  #expect(setBody.contains(#"&& [params[@"lastName"] length] > 0"#))
   #expect(setBody.contains("@selector(setNewPersonalNickname:), nickname"))
   #expect(setBody.contains("@selector(setSharingEnabled:)"))
   #expect(setBody.contains("personal != previous"))

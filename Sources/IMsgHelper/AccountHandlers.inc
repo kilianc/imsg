@@ -370,14 +370,19 @@ static NSDictionary *handleShareNickname(NSInteger requestId, NSDictionary *para
 /// cache, and its sandbox cannot read a file inside the Messages container.
 /// The answer waits for imagent's echo so `stored` reports what Messages now
 /// holds rather than that a request was sent.
+///
+/// A receiving device's BlastDoor validates the record before showing it, and
+/// a value Messages itself never writes fails that validation. Records Messages
+/// writes name the avatar image `NickNameImage` and leave out an empty last name.
 static NSDictionary *handleSetPersonalNickname(NSInteger requestId, NSDictionary *params) {
     NSString *firstName = params[@"firstName"];
     if (![firstName isKindOfClass:[NSString class]] || firstName.length == 0) {
         return errorResponse(requestId, @"Missing firstName");
     }
     NSString *lastName = [params[@"lastName"] isKindOfClass:[NSString class]]
+            && [params[@"lastName"] length] > 0
         ? params[@"lastName"]
-        : @"";
+        : nil;
     NSString *photoPath = [params[@"photoPath"] isKindOfClass:[NSString class]]
         ? params[@"photoPath"]
         : nil;
@@ -411,7 +416,7 @@ static NSDictionary *handleSetPersonalNickname(NSInteger requestId, NSDictionary
             avatar = ((id (*)(id, SEL, id, id, id))objc_msgSend)(
                 [NSClassFromString(@"IMNicknameAvatarImage") alloc],
                 @selector(initWithImageName:imageFilePath:sensitivityAnalysis:),
-                [[NSUUID UUID] UUIDString], photoPath, nil);
+                @"NickNameImage", photoPath, nil);
             if (!avatar) return errorResponse(requestId, @"Could not build the avatar");
         }
         id nickname = ((id (*)(id, SEL, id, id, id, id))objc_msgSend)(
